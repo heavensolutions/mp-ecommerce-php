@@ -55,11 +55,11 @@ $preference->notification_url = "https://heavensolutions-mp-commerce.herokuapp.c
 
 $preference->external_reference = "lucas.f.fuentes@gmail.com";
 
-
-
 $preference->save();
 
 
-header("Location:".$preference->init_point);
+var_dump($preference);
+
+// header("Location:".$preference->init_point);
 
 ?>
