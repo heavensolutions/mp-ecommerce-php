@@ -124,13 +124,18 @@
                                             </h3>
                                         </div>
                                         <h3 >
-                                            <?php echo $_POST['price'] ?>
+                                            <?php echo "$" . $_POST['price'] ?>
                                         </h3>
                                         <h3 >
-                                            <?php echo "$" . $_POST['unit'] ?>
+                                            <?php echo $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>
+                                    <form action="checkout.php" method="POST">
+                                        <input type="hidden" name="product_name" value="<?php echo $_POST['title'] ?>">
+                                        <input type="hidden" name="product_price" value="<?php echo $_POST['price'] ?>">
+                                        <input type="hidden" name="product_image" value="<?php echo $_POST['img'] ?>">
+                                        <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
