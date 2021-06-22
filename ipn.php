@@ -2,6 +2,12 @@
 require_once("vendor/autoload.php");
 http_response_code(200);
 
+// Takes raw data from the request
+$json = file_get_contents('php://input');
+
+// Converts it into a PHP object
+$data = json_decode($json);
+
 MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
 
 switch ($_POST["type"]) {
@@ -21,7 +27,7 @@ switch ($_POST["type"]) {
 
 $json = json_encode($_POST);
 $arch = fopen("json.txt", "a+");
-fwrite($arch, "[" . date("Y-m-d H:i:s.u") . "] $json\n");
+fwrite($arch, "[" . date("Y-m-d H:i:s.u") . "] $data\n");
 fclose($arch);
 
 if ($payment->status == "approved") {
