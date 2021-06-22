@@ -25,11 +25,16 @@ if ($payment->status == "approved") {
     $arch = fopen("json.txt", "a+");
     fwrite($arch, "[" . date("Y-m-d H:i:s.u") . "] $json\n");
     fclose($arch);
+
+    $json = json_encode($_POST);
+    $arch = fopen("json.txt", "a+");
+    fwrite($arch, "[" . date("Y-m-d H:i:s.u") . "] $json\n");
+    fclose($arch);
     
 }else{
     
         $arch = fopen("json.txt", "a+");
-        fwrite($arch, "[" . date("Y-m-d H:i:s.u") . "] no guardé nada :)  \n");
+        fwrite($arch, "[" . date("Y-m-d H:i:s.u") . "] no guardo nada :)  \n");
         fclose($arch);
 
 }
