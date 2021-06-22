@@ -1,4 +1,3 @@
-
 <?php
 // SDK de Mercado Pago
 require __DIR__ .  '/vendor/autoload.php';
@@ -15,7 +14,8 @@ $preference = new MercadoPago\Preference();
 $item = new MercadoPago\Item();
 $item->title = $_POST['product_name'];
 $item->description = "dispositivo móvile de Tienda e-commerce";
-$item->unit_price = $_POST['product_price'];
+$item->currency_id = "ARS";
+$item->unit_price = round($_POST['product_price'], 0);
 $item->quantity = 1;
 $item->picture_url = $_POST['img'];
 $preference->items = array($item);
@@ -25,8 +25,7 @@ $payer = new MercadoPago\Payer();
 $payer->name = $_POST['name'];
 $payer->surname = $_POST['surname'];
 $payer->email = $_POST['email'];
-$payer->phone->area_code = $_POST['cod'];
-$payer->phone->number = $_POST['tel'];
+$payer->phone = array("area_code" => $_POST['cod'], "number" => $_POST['tel']);
 $payer->date_created = $objDateTime->format(DateTime::ISO8601);
 
 
@@ -37,10 +36,22 @@ $payer->address = array(
 );
 $preference->payer = $payer;
 
-$preference->payment_methods->excluded_payment_methods = array("id"=> "amex");
-$preference->payment_methods->excluded_payment_types = array("id"=> "atm");
-$preference->payment_methods->installments = 6;
+$preference->payment_methods = array(
+    "excluded_payment_types" => array(
+      array("id" => "credit_card")
+    ),
+    "installments" => 12
+  );
 
+$preference->payment_methods = array(
+    "excluded_payment_methods" => array(
+      array("id" => "atm")
+    ),
+    "excluded_payment_types" => array(
+      array("id" => "amex")
+    ),
+    "installments" => 6
+  );
 
 // back urls
 $preference->back_urls = array(
@@ -57,9 +68,5 @@ $preference->external_reference = "lucas.f.fuentes@gmail.com";
 
 $preference->save();
 
-
-var_dump($preference);
-
-// header("Location:".$preference->init_point);
-
+header("Location: ".$preference->init_point);
 ?>

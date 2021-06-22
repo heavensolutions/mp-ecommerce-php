@@ -501,9 +501,9 @@
                         <div class="as-accessories-results  as-search-desktop">
                             <form action="process.php" method="POST">
                                 <input type="hidden" name="product_id" value="1234">
-                                <input type="hidden" name="product_name" value="<?php echo $_POST['title'] ?>">
-                                <input type="hidden" name="product_price" value="<?php echo $_POST['price'] ?>">
-                                <input type="hidden" name="product_image" value="<?php echo $_POST['img'] ?>">
+                                <input type="hidden" name="product_name" value="<?php echo $_POST['product_name'] ?>">
+                                <input type="hidden" name="product_price" value="<?php echo $_POST['product_price'] ?>">
+                                <input type="hidden" name="product_image" value="<?php echo $_POST['product_image'] ?>">
                                 <table>
                                     <th>
                                     <td colspan="2">
