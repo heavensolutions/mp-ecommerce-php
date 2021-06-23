@@ -12,12 +12,13 @@ $preference = new MercadoPago\Preference();
 
 // item
 $item = new MercadoPago\Item();
+$item->id = "1234";
 $item->title = $_POST['product_name'];
-$item->description = "dispositivo móvile de Tienda e-commerce";
-$item->currency_id = "ARS";
-$item->unit_price = round($_POST['product_price'], 0);
-$item->quantity = 1;
+$item->description = "Dispositivo móvil de Tienda e-commerce";
 $item->picture_url = $_POST['img'];
+$item->quantity = 1;
+$item->unit_price = round($_POST['product_price'], 0);
+$item->currency_id = "ARS";
 $preference->items = array($item);
 
 // payer
