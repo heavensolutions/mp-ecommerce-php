@@ -37,18 +37,11 @@ $payer->address = array(
 $preference->payer = $payer;
 
 $preference->payment_methods = array(
-    "excluded_payment_types" => array(
-      array("id" => "credit_card")
-    ),
-    "installments" => 12
-  );
-
-$preference->payment_methods = array(
     "excluded_payment_methods" => array(
-      array("id" => "atm")
+      array("id" => "amex")
     ),
     "excluded_payment_types" => array(
-      array("id" => "amex")
+      array("id" => "atm")
     ),
     "installments" => 6
   );
@@ -67,6 +60,9 @@ $preference->notification_url = "https://heavensolutions-mp-commerce.herokuapp.c
 $preference->external_reference = "lucas.f.fuentes@gmail.com";
 
 $preference->save();
+
+// echo '<pre>' . var_export($preference, true) . '</pre>';
+
 
 header("Location: ".$preference->init_point);
 ?>
